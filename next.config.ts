@@ -6,7 +6,22 @@ import './src/lib/schema/env/server';
 import './src/lib/schema/env/client';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'docs.google.com',
+      },
+    ],
+  },
 };
 
 export default withFlowbiteReact(nextConfig);

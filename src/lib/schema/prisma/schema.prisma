@@ -50,8 +50,6 @@ model Book {
   /// @zod.string.min(1,{ message: "required" })
   type            String   @default("book")
   /// @zod.number.min(1,{ message: ">=1" })
-  seq             Int      @default(1)
-  /// @zod.number.min(1,{ message: ">=1" })
   difficulty      Int      @default(1)
   pages           Page[]
   createdAt       DateTime @default(now())

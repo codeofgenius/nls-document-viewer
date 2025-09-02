@@ -19,12 +19,41 @@ export async function getBooks() {
 
 export async function getBook(id: number) {
   try {
+    // const orange = await prisma.book.findMany({
+    //   include: {
+    //     pages: true,
+    //   },
+    // });
     const book = await prisma.book.findFirst({
       where: {
         id,
       },
       include: {
-        pages: true,
+        pages: {
+          orderBy: {
+            seq: 'asc',
+          },
+        },
+      },
+    });
+    return book;
+  } catch (error) {
+    handleDatabaseError(error);
+  }
+}
+
+export async function getBookBySlug(slug: string) {
+  try {
+    const book = await prisma.book.findFirst({
+      where: {
+        slug,
+      },
+      include: {
+        pages: {
+          orderBy: {
+            seq: 'asc',
+          },
+        },
       },
     });
     return book;

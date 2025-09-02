@@ -1,0 +1,139 @@
+'use client';
+
+import { useState } from 'react';
+
+import { Button } from 'flowbite-react';
+//import { useTranslations } from 'next-intl';
+
+import { textareaAction } from '@/actions/markdown';
+import { TextAreaModal2 } from '@/components/study/markdown/modal';
+import { inconsolata } from '@/components/ui/font';
+import {
+  type ParserType,
+  type GEMINI_RESPONSE_TYPE,
+  type Textarea2ActionParam,
+} from '@/types/markdown';
+
+export function TextareaRender({ children, node }: ParserType) {
+  const t = useTranslations('common');
+  const [value, setValue] = useState(children);
+  const [openModal, setOpenModal] = useState(false);
+  // 0 => PROC, 1 => OK, 2 => NG
+  const [status, setStatus] = useState(0);
+  const [result, setResult] = useState('');
+
+  const param: Textarea2ActionParam = [
+    {
+      title: t('running_title'),
+      message: t('running'),
+      status: 'PROC',
+    },
+    {
+      title: t('correct_title'),
+      message: t('correct'),
+      status: 'OK',
+    },
+    {
+      title: t('wrong_title'),
+      message: t('wrong'),
+      status: 'NG',
+    },
+  ];
+
+  const {
+    properties: {
+      dataOk,
+      dataQuestion,
+      dataUrl,
+      dataLanguage,
+      dataDisplaylanguage,
+    },
+  } = node ?? {
+    properties: {
+      dataOk: '',
+      dataQuestion: '',
+      dataUrl: '',
+      dataLanguage: '',
+      dataDisplaylanguage: '',
+    },
+  };
+
+  function handleChangeValue(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setValue(e.target.value);
+  }
+
+  async function handleSubmit() {
+    // console.log('start running');
+    preActon();
+    const response = await textareaAction({
+      dataOk,
+      dataQuestion,
+      dataUrl,
+      dataLanguage,
+      dataDisplaylanguage,
+      value,
+    });
+    // console.log(response);
+    // console.log('end running');
+    postAction(response);
+  }
+
+  function preActon() {
+    setStatus(0);
+    setResult('');
+    setOpenModal(true);
+  }
+
+  function postAction(response: GEMINI_RESPONSE_TYPE) {
+    if (response.status === 'OK') {
+      setStatus(1);
+    } else {
+      setStatus(2);
+    }
+    setResult(response.result);
+  }
+
+  function closeAction() {
+    setOpenModal(false);
+  }
+
+  return (
+    <>
+      <form className="my-4">
+        <textarea
+          className={`${inconsolata.className} block min-h-[300px] w-[100%] resize-none rounded-md border-2 border-gray-600 bg-gray-800 p-3 text-lg tracking-wide text-white dark:border-gray-400 dark:bg-gray-200 dark:text-black`}
+          defaultValue={value}
+          onChange={handleChangeValue}
+        />
+        <div className="my-4">
+          <Button
+            className="cursor-pointer"
+            onClick={handleSubmit}
+            type="button"
+          >
+            {t('run')}
+          </Button>
+        </div>
+      </form>
+      <div />
+      {result && (
+        <div className="my-4">
+          <h4 className="my-4 bg-pink-200 p-2 dark:bg-pink-800">
+            {t('run_result')}
+          </h4>
+          <div className="my-4">{t('run_result_message')}</div>
+          <div className="rounded-md border-2 border-gray-300 bg-gray-100 p-3 text-lg dark:border-gray-600 dark:bg-gray-800">
+            <pre className="whitespace-pre-wrap">{result}</pre>
+          </div>
+        </div>
+      )}
+      {openModal && (
+        <TextAreaModal2
+          closeAction={closeAction}
+          param={param[status]}
+          result={result}
+        />
+      )}
+    </>
+  );
+}

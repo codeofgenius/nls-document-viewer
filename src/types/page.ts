@@ -11,3 +11,11 @@ export type ViewPageProps = {
 };
 
 export type EditPageProps = ViewPageProps;
+
+export type ViewBookProps = {
+  params: Promise<{ bookSlug: string }>;
+};
+
+export type ViewBookPageProps = {
+  params: Promise<{ bookSlug: string; pageSlugs: string[] }>;
+};

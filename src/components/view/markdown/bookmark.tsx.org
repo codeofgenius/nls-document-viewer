@@ -1,0 +1,42 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import { usePathname } from 'next/navigation';
+import { HiOutlineBookmark } from 'react-icons/hi2';
+
+import { bookmarkExistAction, toggleBookmarkAction } from '@/actions/bookmark';
+import { classNames } from '@/lib/functions';
+
+export function BookmarkButton() {
+  const pathname = usePathname();
+  const [active, setActive] = useState(false);
+
+  function handleClickTop() {
+    void (async () => {
+      const bookmarkExist = await toggleBookmarkAction(pathname);
+      setActive(bookmarkExist);
+    })();
+  }
+
+  useEffect(() => {
+    void (async () => {
+      const bookmarkExist = await bookmarkExistAction(pathname);
+      setActive(bookmarkExist);
+    })();
+  }, [pathname]);
+
+  return (
+    <button
+      className={classNames(
+        active
+          ? 'bg-emerald-500 text-white hover:bg-emerald-600 dark:bg-emerald-800 dark:text-black dark:hover:bg-emerald-700'
+          : 'bg-gray-200 text-black hover:text-emerald-600 dark:bg-gray-700 dark:text-white dark:hover:text-emerald-500',
+        'fixed right-8 bottom-24 inline-flex h-12 w-12 cursor-pointer items-center justify-center rounded-full text-lg shadow-md transition-colors duration-200',
+      )}
+      onClick={handleClickTop}
+    >
+      <HiOutlineBookmark className="h-6 w-6" />
+    </button>
+  );
+}
