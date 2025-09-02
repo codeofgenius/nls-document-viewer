@@ -24,9 +24,10 @@
     "typecheck": "tsc --skipLibCheck true --noEmit",
     "typecheck:full": "tsc --skipLibCheck false --noEmit",
     "prepare": "husky",
-    "prisma:generate": "pnpm dotenv -e .env.local -- pnpm prisma generate",
-    "prisma:migrate:dev": "pnpm dotenv -e .env.local -- pnpm prisma migrate dev --name init",
-    "prisma:db:seed": "pnpm dotenv -e .env.local -- pnpm prisma db seed",
+    "prisma:local:generate": "pnpm dotenv -e .env.local -- pnpm prisma generate",
+    "prisma:local:migrate:dev": "pnpm dotenv -e .env.local -- pnpm prisma migrate dev --name init",
+    "prisma:local:db:seed": "pnpm dotenv -e .env.local -- pnpm prisma db seed",
+    "prisma::generate": "pnpm prisma generate",
     "supabase:gen:types": "pnpm supabase gen types typescript --linked > src/types/database.types.ts"
   },
   "dependencies": {

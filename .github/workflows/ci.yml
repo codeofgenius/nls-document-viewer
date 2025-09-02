@@ -21,7 +21,7 @@ jobs:
         run: pnpm install
 
       - name: Run prisma generate
-        run: pnpm run prisma generate
+        run: pnpm run prisma:generate
 
       - name: Run lint
         run: pnpm run lint:fix
