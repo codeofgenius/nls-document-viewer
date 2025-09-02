@@ -12,7 +12,6 @@ const links = [
   { title: 'link', href: '/ui/sample/link' },
   { title: 'buttonlink', href: '/ui/sample/buttonlink' },
   { title: 'form', href: '/ui/sample/form' },
-  { title: 'author', href: '/author' },
   { title: 'book', href: '/book' },
 ];
 

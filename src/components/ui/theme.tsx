@@ -18,10 +18,10 @@ export const MainTheme = createTheme({
   },
   navbar: {
     root: {
-      base: 'bg-blue-200 dark:bg-blue-800 shadow-lg',
+      base: 'bg-rose-200 dark:bg-rose-800 shadow-lg',
     },
     collapse: {
-      base: 'bg-slate-100 md:bg-blue-200 dark:bg-gray-800 dark:md:bg-blue-800',
+      base: 'bg-slate-100 md:bg-rose-200 dark:bg-gray-800 dark:md:bg-rose-800',
     },
   },
 });
