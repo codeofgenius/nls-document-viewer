@@ -1,0 +1,30 @@
+services:
+  app:
+    container_name: app-container
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    tty: true
+    volumes:
+      - ..:/workspaces/nls-document-viewer:cached
+    #environment:
+    #  # db info to connect postgresql
+    #  DATABASE_URL: 'postgresql://user:password@db:5432/mydatabase'
+    ports:
+      - '3000:3000' # localport:dockerport
+    depends_on:
+      - db
+  # service to host postgresql db
+  db:
+    container_name: pg-container
+    image: postgres:15-alpine
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+
+volumes:
+  db-data:

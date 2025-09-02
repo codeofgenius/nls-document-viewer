@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin 'flowbite-react/plugin/tailwindcss';
+@source '../../.flowbite-react/class-list.json';
+
+@theme {
+  @keyframes spin-180 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+
+  @keyframes spin-0 {
+    0% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes spin-90 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(90deg);
+    }
+  }
+
+  @keyframes spin-90-0 {
+    0% {
+      transform: rotate(90deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  --animate-spin-180: spin-180 0.3s ease-in-out forwards;
+  --animate-spin-0: spin-0 0.3s ease-in-out forwards;
+  --animate-spin-90: spin-90 0.2s ease-in-out forwards;
+  --animate-spin-90-0: spin-90-0 0.2s ease-in-out forwards;
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    /* border-radius: 100vh; */
+    background: #f3f4f6;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    /* border-radius: 100vh; */
+    background: #9ca3af;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(107 114 128);
+  }
+
+  html[class*='dark'] .scrollbar::-webkit-scrollbar-track {
+    /* border-radius: 100vh; */
+    background: rgb(17 24 39);
+  }
+
+  html[class*='dark'] .scrollbar::-webkit-scrollbar-thumb {
+    /* border-radius: 100vh; */
+    background: rgb(107 114 128);
+  }
+  html[class*='dark'] .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+}

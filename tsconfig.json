@@ -1,0 +1,77 @@
+{
+  "compilerOptions": {
+    /* プロジェクト */
+    // 差分型チェック（`.tsbuildinfo` を使ってビルドを高速化）
+    "incremental": true,
+    /* .tsbuildinfo 増分コンパイルファイルのパスを指定します。 */
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+
+    /* 言語と環境 */
+    // トランスパイル先の構文レベル（最新構文を許可）
+    "target": "ES2022",
+    // 使用可能な組み込みAPI（ブラウザ環境と最新JS機能を含む）
+    "lib": ["dom", "dom.iterable", "esnext"],
+    // JSX構文をそのまま出力（SWCやBabelで後から処理）
+    "jsx": "preserve",
+    // 明示的にモジュールと判断するルール（ファイル単位で制御）
+    "moduleDetection": "force",
+
+    /* モジュール */
+    // 出力されるモジュール形式（import/exportを維持）
+    "module": "esnext",
+    // バンドラ向けのモジュール解決（Node.jsスタイルではない）
+    "moduleResolution": "bundler",
+    // ルートディレクトリ（相対パスの基準）
+    "baseUrl": ".",
+    // "@/" を "src/" にマッピング（エイリアス）
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    // .json ファイルを import できるようにする
+    "resolveJsonModule": true,
+
+    /* JavaScript サポート */
+    // JS ファイルを TypeScript プロジェクト内で許可
+    "allowJs": true,
+    // JS ファイルにも型チェックを適用
+    "checkJs": true,
+
+    /* Emit */
+    // トランスパイル結果（.js）を出力しない（型チェック専用）
+    "noEmit": true,
+    // 念のために出力フォルダの指定
+    "outDir": "dist",
+
+    /* システム連携の制約事項 */
+    // CommonJS のモジュールを ESModules としてインポート可能にする
+    "esModuleInterop": true,
+    // 各ファイルを独立して変換可能にする（SWCなどに必要）
+    "isolatedModules": true,
+    // import/export の構文を変更せずそのまま出力
+    "verbatimModuleSyntax": true,
+    // ファイル名の大文字・小文字の不一致を許さない（OS間の差異対策）
+    "forceConsistentCasingInFileNames": true,
+
+    /* 型チェック */
+    // 厳密な型チェックをすべて有効にする
+    "strict": true,
+    // switch文の意図しないfallthrough（次のcaseへの抜け）を禁止
+    "noFallthroughCasesInSwitch": true,
+    // 配列・オブジェクトの要素アクセスをより厳密にチェック
+    "noUncheckedIndexedAccess": true,
+
+    /* 完全性 */
+    // node_modules 内の型定義ファイルの型チェックをスキップ（高速化）
+    "skipLibCheck": true,
+
+    /* プラグイン */
+    // Next.js の構文チェックを強化するプラグイン
+    "plugins": [{ "name": "next" }]
+  },
+
+  /* 型チェックの対象ファイル */
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+
+  /* 除外するファイル */
+  "exclude": ["node_modules", ".next", "dist"] // npm の依存ファイルは除外（重いので）
+}

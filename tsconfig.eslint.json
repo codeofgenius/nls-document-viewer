@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "eslint.config.mjs", // ESLint 設定ファイル
+    "next-env.d.ts", // Next.js 環境用型定義ファイル（必須）
+    "**/*.ts", // すべての TypeScript ファイル
+    "**/*.tsx", // JSX を含む TypeScript ファイル
+    "**/*.cjs", // CommonJS 形式の JS ファイル
+    "**/*.js", // 通常の JavaScript ファイル
+    ".next/types/**/*.ts", // Next.js の内部型定義
+    "postcss.config.mjs" // PostCSS 設定ファイル
+  ]
+}

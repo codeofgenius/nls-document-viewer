@@ -1,0 +1,61 @@
+{
+  "name": "node-devcontainer",
+  "dockerComposeFile": "../docker/docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    // python
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      //"installZsh": false,
+      //"installOhMyZsh": false,
+      //"installOhMyZshConfig": false,
+      "upgradePackages": true,
+      "username": "vscode",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    },
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+      "packages": "curl,wget,git,jq,ca-certificates,build-essential"
+    }
+  },
+  "postCreateCommand": "/bin/sh .devcontainer/postCreateCommand.sh",
+  "postStartCommand": "/bin/sh .devcontainer/postStartCommand.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        //"python.defaultInterpreterPath": "/home/vscode/.venv/bin/python"
+      },
+      "extensions": [
+        // Integrates ESLint JavaScript into VS Code.
+        "dbaeumer.vscode-eslint",
+        // スペルチェッカー
+        "streetsidesoftware.code-spell-checker",
+        // Prettier (Python以外も含む汎用フォーマッター)
+        "esbenp.prettier-vscode",
+        // Make TypeScript errors prettier and more human-readable in VSCode
+        "yoavbls.pretty-ts-errors",
+        // Intelligent Tailwind CSS tooling for VS Code
+        "bradlc.vscode-tailwindcss",
+        // Improves code readability by folding class attributes
+        "stivo.tailwind-fold",
+        // Improve highlighting of errors, warnings and other language diagnostics.
+        "usernamehw.errorlens",
+        // インデントの可視化
+        "oderwat.indent-rainbow",
+        // 自動タグリネーム
+        "formulahendry.auto-rename-tag",
+        // Prisma helper
+        "Prisma.prisma",
+        // editconfig
+        "editorconfig.editorconfig",
+        "github.vscode-pull-request-github",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "mhutchie.git-graph"
+      ]
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "name": "nls-document-viewer",
+  "version": "0.0.1",
+  "description": "nls-document-viewer",
+  "author": "Hiroshi Fujiwara",
+  "license": "MIT",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/repository.git"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --check \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,yml,yaml}\" --cache",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,yml,yaml}\" --cache",
+    "typecheck": "tsc --skipLibCheck true --noEmit",
+    "typecheck:full": "tsc --skipLibCheck false --noEmit",
+    "prepare": "husky",
+    "prisma:generate": "pnpm dotenv -e .env.local -- pnpm prisma generate",
+    "prisma:migrate:dev": "pnpm dotenv -e .env.local -- pnpm prisma migrate dev --name init",
+    "prisma:db:seed": "pnpm dotenv -e .env.local -- pnpm prisma db seed",
+    "supabase:gen:types": "pnpm supabase gen types typescript --linked > src/types/database.types.ts"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
+    "@prisma/client": "^6.14.0",
+    "@prisma/extension-accelerate": "^2.0.2",
+    "@t3-oss/env-nextjs": "^0.13.8",
+    "entities": "^6.0.1",
+    "flowbite-react": "^0.12.7",
+    "next": "15.4.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-hook-form": "^7.62.0",
+    "react-icons": "^5.5.0",
+    "react-toastify": "^11.0.5",
+    "tailwind-merge": "^3.3.1",
+    "tailwind-variants": "^2.1.0",
+    "zod": "^3.25.76",
+    "zod-prisma-types": "^3.2.4"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@eslint/js": "^9.32.0",
+    "@next/eslint-plugin-next": "^15.4.6",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "dotenv-cli": "^10.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-perfectionist": "^4.15.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.4",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "prisma": "^6.14.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.20.4",
+    "typescript": "^5",
+    "typescript-eslint": "^8.39.0"
+  },
+  "prisma": {
+    "schema": "src/lib/schema/prisma/schema.prisma",
+    "seed": "tsx src/db/seeds/index.ts"
+  }
+}

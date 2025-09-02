@@ -1,0 +1,33 @@
+{
+  "recommendations": [
+    // Integrates ESLint JavaScript into VS Code.
+    "dbaeumer.vscode-eslint",
+    // スペルチェッカー
+    "streetsidesoftware.code-spell-checker",
+    // Prettier (Python以外も含む汎用フォーマッター)
+    "esbenp.prettier-vscode",
+    // Make TypeScript errors prettier and more human-readable in VSCode
+    "yoavbls.pretty-ts-errors",
+    // Intelligent Tailwind CSS tooling for VS Code
+    "bradlc.vscode-tailwindcss",
+    // Improves code readability by folding class attributes
+    "stivo.tailwind-fold",
+    // Improve highlighting of errors, warnings and other language diagnostics.
+    "usernamehw.errorlens",
+    // インデントの可視化
+    "oderwat.indent-rainbow",
+    // 自動タグリネーム
+    "formulahendry.auto-rename-tag",
+    // Prisma helper
+    "Prisma.prisma",
+    // editconfig
+    "editorconfig.editorconfig",
+    "github.vscode-pull-request-github",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "mhutchie.git-graph"
+  ],
+  "unwantedRecommendations": [
+    // 必要に応じて、推奨したくない拡張機能があれば記述
+  ]
+}
