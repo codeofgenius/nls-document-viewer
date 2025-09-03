@@ -28,6 +28,8 @@
     "prisma:local:migrate:dev": "pnpm dotenv -e .env.local -- pnpm prisma migrate dev --name init",
     "prisma:local:db:seed": "pnpm dotenv -e .env.local -- pnpm prisma db seed",
     "prisma:local:db:seedDoc": "./bin/seedToLocalDb.sh",
+    "prisma:prod:db:seed": "pnpm dotenv -e .env -- pnpm prisma db seed",
+    "prisma:prod:db:seedDoc": "./bin/seedToProdDb.sh",
     "prisma:generate": "pnpm prisma generate",
     "supabase:gen:types": "pnpm supabase gen types typescript --linked > src/types/database.types.ts"
   },
