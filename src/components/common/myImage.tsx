@@ -20,7 +20,7 @@ export function MyImage({
   const [cn, setCn] = useState(className);
 
   function handleImageError() {
-    setImageSrc(noImage);
+    setImageSrc(noImage.src);
     // setImageSrc(src);
     setCn((cn) => twMerge(cn, errorClassName));
   }
