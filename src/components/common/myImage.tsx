@@ -5,7 +5,6 @@ import { useState } from 'react';
 import Image, { type StaticImageData } from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
-//import noImage from '@/assets/image/noimage.png';
 import { type MyImageProps } from '@/types/common';
 
 const noImage = '/noimage.png';
