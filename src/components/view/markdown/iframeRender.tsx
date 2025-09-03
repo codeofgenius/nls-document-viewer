@@ -8,7 +8,7 @@ export function IframeRender({ src, node }: ParserType) {
     <iframe
       allow={allow}
       allowFullScreen={allowFullScreen}
-      className="my-4 aspect-video w-full"
+      className="my-6 aspect-video w-full"
       referrerPolicy="strict-origin-when-cross-origin"
       src={src}
       title={title}

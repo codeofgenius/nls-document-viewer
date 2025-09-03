@@ -4,7 +4,9 @@ import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 
 import { CodeRender } from '@/components/view/markdown/codeRender';
+import { DefinitionRender } from '@/components/view/markdown/definitionRender';
 import { HeadingRender } from '@/components/view/markdown/headingRender';
+import { HrRender } from '@/components/view/markdown/hrRender';
 import { IframeRender } from '@/components/view/markdown/iframeRender';
 import { ImageRender } from '@/components/view/markdown/imageRender';
 import { LinkRender } from '@/components/view/markdown/linkRender';
@@ -39,6 +41,10 @@ const componentProps: Record<string, ComponentParserType> = {
   //textarea: TextareaRender,
   p: ParagraphRender,
   iframe: IframeRender,
+  hr: HrRender,
+  dl: DefinitionRender,
+  dt: DefinitionRender,
+  dd: DefinitionRender,
   // p: ({ children }) => <p style={{ marginBottom: '1em' }}>{children}</p>,
 };
 
