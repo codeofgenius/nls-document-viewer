@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 
-import Image from 'next/image';
+import Image, { type StaticImageData } from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
-import noImage from '@/assets/image/noimage.png';
+//import noImage from '@/assets/image/noimage.png';
 import { type MyImageProps } from '@/types/common';
+
+const noImage = '/noimage.png';
 
 export function MyImage({
   src,
@@ -16,7 +18,7 @@ export function MyImage({
   width,
   height,
 }: MyImageProps) {
-  const [imageSrc, setImageSrc] = useState(src);
+  const [imageSrc, setImageSrc] = useState<string | StaticImageData>(src);
   const [cn, setCn] = useState(className);
 
   function handleImageError() {
