@@ -46,6 +46,13 @@
   --animate-spin-90-0: spin-90-0 0.2s ease-in-out forwards;
 }
 
+.accordionBody {
+  transition:
+    height 0.2s linear,
+    opacity 0.2s ease-in;
+  overflow: hidden;
+}
+
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
     width: 8px;

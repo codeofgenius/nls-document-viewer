@@ -1,3 +1,6 @@
+import type { Book } from '@/db/prisma';
+import type { PagePartialWithRelations } from '@/lib/schema/generated/zod';
+
 export type LayoutProps = {
   children: React.ReactNode;
 };
@@ -18,4 +21,16 @@ export type ViewBookProps = {
 
 export type ViewBookPageProps = {
   params: Promise<{ bookSlug: string; pageSlugs: string[] }>;
+};
+
+export type Chapter = {
+  chapter: PagePartialWithRelations;
+  pages: PagePartialWithRelations[];
+};
+
+export type Chapters = Chapter[];
+
+export type PageByChapterProps = {
+  book: Book;
+  chapter: Chapter;
 };
