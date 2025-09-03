@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import Image, { type StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
 import noImage from '@/assets/image/noimage.png';
@@ -16,12 +16,11 @@ export function MyImage({
   width,
   height,
 }: MyImageProps) {
-  const [imageSrc, setImageSrc] = useState<string | StaticImageData>(src);
+  const [imageSrc, setImageSrc] = useState(src);
   const [cn, setCn] = useState(className);
 
   function handleImageError() {
-    setImageSrc(noImage.src);
-    // setImageSrc(src);
+    setImageSrc(noImage);
     setCn((cn) => twMerge(cn, errorClassName));
   }
 
