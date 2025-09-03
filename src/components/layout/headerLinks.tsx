@@ -12,7 +12,7 @@ const links = [
   { title: 'link', href: '/ui/sample/link' },
   { title: 'buttonlink', href: '/ui/sample/buttonlink' },
   { title: 'form', href: '/ui/sample/form' },
-  { title: 'book', href: '/book' },
+  //{ title: 'book', href: '/book' },
 ];
 
 export function HeaderLinks() {
