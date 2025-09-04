@@ -56,7 +56,7 @@ export function ContentRender({ content }: MarkdownRenderProps) {
         rehypeRaw,
         remarkRehype,
         //rehypeSanitize,
-        [remarkRehype, { footnoteLabel: 'footnote' }],
+        [remarkRehype, { footnoteLabel: '脚注' }],
       ]}
       remarkPlugins={[remarkGfm]}
     >

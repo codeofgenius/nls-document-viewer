@@ -12,7 +12,7 @@ export function LinkRender({ children, className, href, id }: ParserType) {
       <a
         className="text-blue-600 underline dark:text-blue-300"
         href={hrefText}
-        id={idText}
+        id={id}
       >
         {children}
       </a>
