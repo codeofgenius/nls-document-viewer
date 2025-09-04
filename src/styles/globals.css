@@ -53,6 +53,10 @@
   overflow: hidden;
 }
 
+html {
+  scroll-padding-top: 60px;
+}
+
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
     width: 8px;
