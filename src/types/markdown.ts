@@ -109,3 +109,15 @@ export type TextareaModal2Props = {
   };
   result?: string;
 };
+
+export type CardLinkMetadataType = {
+  url?: string;
+  title: string;
+  description: string;
+  image: string;
+};
+
+export type CardLinkRouteHandlerResultType = {
+  success: boolean;
+  metaData: CardLinkMetadataType;
+};

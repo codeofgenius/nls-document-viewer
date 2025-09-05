@@ -166,6 +166,11 @@ const eslintConfig = tseslint.config(
       'react-hooks/exhaustive-deps': 'error', // recommended では warn のため error に上書き
     },
   },
+  {
+    rules: {
+      '@next/next/no-img-element': 'off',
+    },
+  },
   // Prettierとの競合防止
   prettierConfig,
 );

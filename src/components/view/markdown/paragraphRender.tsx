@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge';
+
 import { type ParserType } from '@/types/markdown';
 
 export function ParagraphRender({ children, className, node }: ParserType) {
@@ -17,7 +19,7 @@ export function ParagraphRender({ children, className, node }: ParserType) {
   const id = position?.start.line.toString();
   const cn = className ?? '';
   return (
-    <p className={`mb-4 ${cn}`} id={id}>
+    <p className={twMerge('mb-4', cn)} id={id}>
       {children}
     </p>
   );

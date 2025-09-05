@@ -1,8 +1,11 @@
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
+import remarkDirective from 'remark-directive';
+import remarkDirectiveRehype from 'remark-directive-rehype';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 
+import { CardLinkRender } from '@/components/view/markdown/cardLinkRender';
 import { CodeRender } from '@/components/view/markdown/codeRender';
 import { DefinitionRender } from '@/components/view/markdown/definitionRender';
 import { HeadingRender } from '@/components/view/markdown/headingRender';
@@ -22,7 +25,6 @@ import {
 
 // TODO
 // import rehypeSanitize from 'rehype-sanitize';
-
 const componentProps: Record<string, ComponentParserType> = {
   h1: HeadingRender,
   h2: HeadingRender,
@@ -45,6 +47,7 @@ const componentProps: Record<string, ComponentParserType> = {
   dl: DefinitionRender,
   dt: DefinitionRender,
   dd: DefinitionRender,
+  cardlink: CardLinkRender,
   // p: ({ children }) => <p style={{ marginBottom: '1em' }}>{children}</p>,
 };
 
@@ -58,7 +61,7 @@ export function ContentRender({ content }: MarkdownRenderProps) {
         //rehypeSanitize,
         [remarkRehype, { footnoteLabel: '脚注' }],
       ]}
-      remarkPlugins={[remarkGfm]}
+      remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
     >
       {content}
     </ReactMarkdown>
