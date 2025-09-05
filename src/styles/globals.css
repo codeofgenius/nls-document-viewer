@@ -57,6 +57,10 @@ html {
   scroll-padding-top: 60px;
 }
 
+.alert-message > p {
+  margin-bottom: unset;
+}
+
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
     width: 8px;

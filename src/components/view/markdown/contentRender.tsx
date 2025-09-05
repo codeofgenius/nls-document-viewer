@@ -14,6 +14,7 @@ import { IframeRender } from '@/components/view/markdown/iframeRender';
 import { ImageRender } from '@/components/view/markdown/imageRender';
 import { LinkRender } from '@/components/view/markdown/linkRender';
 import { ListRender } from '@/components/view/markdown/listRender';
+import { MessageRender } from '@/components/view/markdown/messageRender';
 import { ParagraphRender } from '@/components/view/markdown/paragraphRender';
 import { QuoteRender } from '@/components/view/markdown/quoteRender';
 import { TableRender } from '@/components/view/markdown/tableRender';
@@ -48,6 +49,7 @@ const componentProps: Record<string, ComponentParserType> = {
   dt: DefinitionRender,
   dd: DefinitionRender,
   cardlink: CardLinkRender,
+  message: MessageRender,
   // p: ({ children }) => <p style={{ marginBottom: '1em' }}>{children}</p>,
 };
 
