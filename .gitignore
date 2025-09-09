@@ -43,6 +43,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 dist
+!/src/styles/katex/dist
 
 # prisma generated
 /src/lib/schema/generated

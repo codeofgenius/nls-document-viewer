@@ -24,6 +24,7 @@ const eslintConfig = tseslint.config(
       '**/node_modules/**',
       '.flowbite-react',
       'src/lib/schema/generated',
+      'src/styles/katex',
     ],
   },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
