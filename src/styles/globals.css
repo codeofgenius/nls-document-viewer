@@ -61,6 +61,10 @@ html {
   margin-bottom: unset;
 }
 
+details {
+  margin-bottom: 32px;
+}
+
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
     width: 8px;
