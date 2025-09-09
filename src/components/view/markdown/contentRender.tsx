@@ -1,8 +1,10 @@
 import ReactMarkdown from 'react-markdown';
+import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import remarkDirective from 'remark-directive';
 import remarkDirectiveRehype from 'remark-directive-rehype';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 import remarkRehype from 'remark-rehype';
 
 import { CardLinkRender } from '@/components/view/markdown/cardLinkRender';
@@ -23,6 +25,10 @@ import {
   type MarkdownRenderProps,
   type ComponentParserType,
 } from '@/types/markdown';
+
+//import 'katex/dist/katex.min.css'; // `rehype-katex` does not import the CSS for you
+//import 'rehype-katex/dist/katex.min.css';
+import '@/styles/katex/dist/katex.min.css';
 
 // TODO
 // import rehypeSanitize from 'rehype-sanitize';
@@ -60,10 +66,15 @@ export function ContentRender({ content }: MarkdownRenderProps) {
       rehypePlugins={[
         rehypeRaw,
         remarkRehype,
-        //rehypeSanitize,
         [remarkRehype, { footnoteLabel: '脚注' }],
+        rehypeKatex,
       ]}
-      remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
+      remarkPlugins={[
+        remarkGfm,
+        remarkDirective,
+        remarkDirectiveRehype,
+        remarkMath,
+      ]}
     >
       {content}
     </ReactMarkdown>
