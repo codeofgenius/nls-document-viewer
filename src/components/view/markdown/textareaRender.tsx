@@ -3,39 +3,41 @@
 import { useState } from 'react';
 
 import { Button } from 'flowbite-react';
-//import { useTranslations } from 'next-intl';
 
 import { textareaAction } from '@/actions/markdown';
-import { TextAreaModal2 } from '@/components/study/markdown/modal';
 import { inconsolata } from '@/components/ui/font';
+import { TextAreaModal2 } from '@/components/view/markdown/modal';
 import {
   type ParserType,
   type GEMINI_RESPONSE_TYPE,
   type Textarea2ActionParam,
+  type Textarea2ActionParamStatus,
 } from '@/types/markdown';
 
+const names: string[] = ['bob', 'tom', 'john'];
+console.log(names[1]);
+
 export function TextareaRender({ children, node }: ParserType) {
-  const t = useTranslations('common');
   const [value, setValue] = useState(children);
   const [openModal, setOpenModal] = useState(false);
   // 0 => PROC, 1 => OK, 2 => NG
-  const [status, setStatus] = useState(0);
+  const [status, setStatus] = useState<Textarea2ActionParamStatus>(0);
   const [result, setResult] = useState('');
 
   const param: Textarea2ActionParam = [
     {
-      title: t('running_title'),
-      message: t('running'),
+      title: '実行中',
+      message: '実行中',
       status: 'PROC',
     },
     {
-      title: t('correct_title'),
-      message: t('correct'),
+      title: '正解',
+      message: 'おめでとう、正解です',
       status: 'OK',
     },
     {
-      title: t('wrong_title'),
-      message: t('wrong'),
+      title: '間違い',
+      message: '残念、間違いがあります。もう一度挑戦しよう',
       status: 'NG',
     },
   ];
@@ -111,17 +113,15 @@ export function TextareaRender({ children, node }: ParserType) {
             onClick={handleSubmit}
             type="button"
           >
-            {t('run')}
+            実行
           </Button>
         </div>
       </form>
       <div />
       {result && (
         <div className="my-4">
-          <h4 className="my-4 bg-pink-200 p-2 dark:bg-pink-800">
-            {t('run_result')}
-          </h4>
-          <div className="my-4">{t('run_result_message')}</div>
+          <h4 className="my-4 bg-pink-200 p-2 dark:bg-pink-800">実行結果</h4>
+          <div className="my-4">実行結果は以下のようになりました</div>
           <div className="rounded-md border-2 border-gray-300 bg-gray-100 p-3 text-lg dark:border-gray-600 dark:bg-gray-800">
             <pre className="whitespace-pre-wrap">{result}</pre>
           </div>

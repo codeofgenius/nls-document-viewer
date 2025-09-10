@@ -47,7 +47,7 @@ const componentProps: Record<string, ComponentParserType> = {
   ul: ListRender,
   ol: ListRender,
   li: ListRender,
-  //textarea: TextareaRender,
+  textarea: TextareaRender,
   p: ParagraphRender,
   iframe: IframeRender,
   hr: HrRender,

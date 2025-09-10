@@ -93,11 +93,19 @@ export type TextareaModalProps = {
   };
 };
 
-export type Textarea2ActionParam = {
+export type Textarea2ActionType = {
   title: string;
   message: string;
   status: TextareaActionStatus;
-}[];
+};
+
+export type Textarea2ActionParam = [
+  Textarea2ActionType,
+  Textarea2ActionType,
+  Textarea2ActionType,
+];
+
+export type Textarea2ActionParamStatus = 0 | 1 | 2;
 
 export type TextareaModal2Props = {
   okButtonText?: string;

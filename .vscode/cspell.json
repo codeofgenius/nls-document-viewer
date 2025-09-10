@@ -3,7 +3,16 @@
   "ignorePaths": [],
   "dictionaryDefinitions": [],
   "dictionaries": [],
-  "words": ["cardlink", "flowbite", "googleapiclient", "Hiroshi", "Kbbg"],
+  "words": [
+    "cardlink",
+    "Displaylanguage",
+    "flowbite",
+    "genai",
+    "googleapiclient",
+    "Hiroshi",
+    "Inconsolata",
+    "Kbbg"
+  ],
   "ignoreWords": [],
   "import": []
 }

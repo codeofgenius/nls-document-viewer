@@ -65,6 +65,10 @@ details {
   margin-bottom: 32px;
 }
 
+.katex .base {
+  margin-bottom: 10px;
+}
+
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
     width: 8px;

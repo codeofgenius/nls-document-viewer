@@ -70,14 +70,7 @@
   },
 
   /* 型チェックの対象ファイル */
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/components/view/markdown/textareaRender.tsx.org",
-    "src/components/view/markdown/bookmark.tsx.org"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
 
   /* 除外するファイル */
   "exclude": ["node_modules", ".next", "dist"] // npm の依存ファイルは除外（重いので）

@@ -34,6 +34,7 @@
     "supabase:gen:types": "pnpm supabase gen types typescript --linked > src/types/database.types.ts"
   },
   "dependencies": {
+    "@google/genai": "^1.19.0",
     "@hookform/resolvers": "^5.2.1",
     "@prisma/client": "^6.14.0",
     "@prisma/extension-accelerate": "^2.0.2",
