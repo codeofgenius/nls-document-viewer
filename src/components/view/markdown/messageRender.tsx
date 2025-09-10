@@ -3,13 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { type ParserType } from '@/types/markdown';
 
-export function MessageRender({
-  children,
-  className,
-  node,
-  id,
-  ...rest
-}: ParserType) {
+export function MessageRender({ children, className, node }: ParserType) {
   // const { tagName } = node ?? { tagName: 'div' };
   const { position } = node ?? {
     start: {
@@ -25,12 +19,7 @@ export function MessageRender({
   };
   const idText = position?.start.line.toString();
 
-  console.log(children);
-  console.log(node);
-  console.log(rest);
-  console.log('----');
-
-  switch (id) {
+  switch (className) {
     case 'info':
       return (
         <div
