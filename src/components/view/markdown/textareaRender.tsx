@@ -10,53 +10,50 @@ import { TextAreaModal2 } from '@/components/view/markdown/modal';
 import {
   type ParserType,
   type GEMINI_RESPONSE_TYPE,
-  type Textarea2ActionParam,
-  type Textarea2ActionParamStatus,
+  type TextareaActionStatusParams,
+  type TextareaActionStatusKey,
 } from '@/types/markdown';
 
-const names: string[] = ['bob', 'tom', 'john'];
-console.log(names[1]);
+const param: TextareaActionStatusParams = [
+  {
+    title: '実行中',
+    message: '実行中',
+    status: 'PROC',
+  },
+  {
+    title: '正解',
+    message: 'おめでとう、正解です',
+    status: 'OK',
+  },
+  {
+    title: '間違い',
+    message: '残念、間違いがあります。もう一度挑戦しよう',
+    status: 'NG',
+  },
+];
 
 export function TextareaRender({ children, node }: ParserType) {
   const [value, setValue] = useState(children);
   const [openModal, setOpenModal] = useState(false);
   // 0 => PROC, 1 => OK, 2 => NG
-  const [status, setStatus] = useState<Textarea2ActionParamStatus>(0);
+  const [status, setStatus] = useState<TextareaActionStatusKey>(0);
   const [result, setResult] = useState('');
-
-  const param: Textarea2ActionParam = [
-    {
-      title: '実行中',
-      message: '実行中',
-      status: 'PROC',
-    },
-    {
-      title: '正解',
-      message: 'おめでとう、正解です',
-      status: 'OK',
-    },
-    {
-      title: '間違い',
-      message: '残念、間違いがあります。もう一度挑戦しよう',
-      status: 'NG',
-    },
-  ];
 
   const {
     properties: {
       dataOk,
       dataQuestion,
       dataUrl,
-      dataLanguage,
-      dataDisplaylanguage,
+      dataProcessLanguage,
+      dataDisplayLanguage,
     },
   } = node ?? {
     properties: {
       dataOk: '',
       dataQuestion: '',
       dataUrl: '',
-      dataLanguage: '',
-      dataDisplaylanguage: '',
+      dataProcessLanguage: '',
+      dataDisplayLanguage: 'ja',
     },
   };
 
@@ -71,8 +68,8 @@ export function TextareaRender({ children, node }: ParserType) {
       dataOk,
       dataQuestion,
       dataUrl,
-      dataLanguage,
-      dataDisplaylanguage,
+      dataProcessLanguage,
+      dataDisplayLanguage,
       value,
     });
     // console.log(response);

@@ -3,23 +3,17 @@
 import { generateContent } from '@/lib/api/google';
 import { timeout } from '@/lib/utils/common';
 
-import type { GEMINI_RESPONSE_TYPE } from '@/types/markdown';
+import type {
+  GEMINI_RESPONSE_TYPE,
+  TextareaActionParam,
+} from '@/types/markdown';
 
 export async function textareaAction(
-  data: Record<string, string>,
+  data: TextareaActionParam,
 ): Promise<GEMINI_RESPONSE_TYPE> {
-  // console.log(data);
-  // data.value: 与えられた値
-  // data.dataOk: 正解の実行値
-  // data.dataQuestion: 質問
-  // data.dataLanguage: プログラム言語
-  // data.dataDisplayLanguage: 自然言語
-
   // 実際にはここでDB処理
-
   // DBから問題ごとの質問文と正解を取得する
-
-  // 待機
+  // 疑似的な待機
   await timeout(1000);
 
   // API処理で送信データを実行

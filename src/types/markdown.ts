@@ -29,6 +29,8 @@ export type MarkdownMenuRenderProps = {
   content: string;
 };
 
+export type DisplayLanguageType = 'ja' | 'en';
+
 export type ParserType = {
   children: string;
   className?: string;
@@ -51,16 +53,17 @@ export type ParserType = {
       };
     };
     properties: {
-      dataOk: string;
-      dataQuestion: string;
-      dataUrl: string;
-      dataLanguage: string;
-      dataDisplaylanguage: string;
       title: string;
       frameBorder: string;
       allow: string;
       referrerPolicy: string;
       allowFullScreen: boolean;
+      value: string;
+      dataOk: string;
+      dataQuestion: string;
+      dataUrl: string;
+      dataProcessLanguage: string;
+      dataDisplayLanguage: DisplayLanguageType;
     };
   };
 };
@@ -74,7 +77,7 @@ export type ComponentParserType = ({
 }: ParserType) => JSX.Element;
 
 export type TextareaActionStatus = 'PROC' | 'OK' | 'NG' | 'ERROR';
-export type TextareaActionParam = {
+export type TextareaActionReturnParam = {
   mainText: string;
   status: TextareaActionStatus;
 }[];
@@ -93,19 +96,30 @@ export type TextareaModalProps = {
   };
 };
 
-export type Textarea2ActionType = {
+export type TextareaActionStatusParam = {
   title: string;
   message: string;
   status: TextareaActionStatus;
 };
 
-export type Textarea2ActionParam = [
-  Textarea2ActionType,
-  Textarea2ActionType,
-  Textarea2ActionType,
+export type TextareaActionStatusParams = [
+  TextareaActionStatusParam,
+  TextareaActionStatusParam,
+  TextareaActionStatusParam,
 ];
 
-export type Textarea2ActionParamStatus = 0 | 1 | 2;
+export type TextareaActionStatusKey = 0 | 1 | 2;
+
+export type TextareaActionParam = {
+  value: string; // given value
+  dataOk: string; // correct answer
+  dataQuestion: string; // given question
+  dataUrl: string; // question url
+  dataProcessLanguage: string; // computer lang
+  dataDisplayLanguage: DisplayLanguageType; // natural lang
+};
+
+export type GenerateContentParam = TextareaActionParam;
 
 export type TextareaModal2Props = {
   okButtonText?: string;

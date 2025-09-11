@@ -20,14 +20,12 @@ import { MessageRender } from '@/components/view/markdown/messageRender';
 import { ParagraphRender } from '@/components/view/markdown/paragraphRender';
 import { QuoteRender } from '@/components/view/markdown/quoteRender';
 import { TableRender } from '@/components/view/markdown/tableRender';
-//import { TextareaRender } from '@/components/view/markdown/textareaRender';
+import { TextareaRender } from '@/components/view/markdown/textareaRender';
 import {
   type MarkdownRenderProps,
   type ComponentParserType,
 } from '@/types/markdown';
 
-//import 'katex/dist/katex.min.css'; // `rehype-katex` does not import the CSS for you
-//import 'rehype-katex/dist/katex.min.css';
 import '@/styles/katex/dist/katex.min.css';
 
 // TODO
@@ -56,7 +54,6 @@ const componentProps: Record<string, ComponentParserType> = {
   dd: DefinitionRender,
   cardlink: CardLinkRender,
   message: MessageRender,
-  // p: ({ children }) => <p style={{ marginBottom: '1em' }}>{children}</p>,
 };
 
 export function ContentRender({ content }: MarkdownRenderProps) {
