@@ -5,6 +5,7 @@ import { BiSolidError } from 'react-icons/bi';
 import { FaCircleInfo } from 'react-icons/fa6';
 import { IoMdClose } from 'react-icons/io';
 
+import { SuccessParticles } from '@/components/animations/success';
 import { classNames } from '@/lib/utils/common';
 import {
   type TextareaModal2Props,
@@ -158,6 +159,7 @@ export function TextAreaModal2({
           </div>
         </div>
       </div>
+      {status === 'OK' && <SuccessParticles />}
     </div>
   );
 }
