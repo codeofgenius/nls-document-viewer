@@ -1,3 +1,4 @@
+import type { getBooks } from '@/db/book';
 import type { Book } from '@/db/prisma';
 import type { PagePartialWithRelations } from '@/lib/schema/generated/zod';
 
@@ -34,3 +35,11 @@ export type PageByChapterProps = {
   book: Book;
   chapter: Chapter;
 };
+
+export type BooksReturnType = Awaited<ReturnType<typeof getBooks>>;
+
+export type IndexPageProps = {
+  books: BooksReturnType;
+};
+
+export type SplashControllerProps = IndexPageProps;
