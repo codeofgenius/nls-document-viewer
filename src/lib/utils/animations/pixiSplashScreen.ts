@@ -17,7 +17,7 @@ export class PixiSplashScreen {
     this.divTag = divTag;
     // this.logoText = 'REACH BEYOND';
     // this.logoText = 'GO BEYOND';
-    this.logoText = 'To boldly go where\nno one has gone before';
+    this.logoText = 'To boldly go where\nNo one has gone before';
   }
 
   async load() {
@@ -67,7 +67,11 @@ export class PixiSplashScreen {
     backgroundTimeline.to(background, {
       pixi: { alpha: 0 },
       duration: 1,
-      delay: 4,
+      delay: 3,
+      onComplete: () => {
+        background.destroy();
+        console.log('backgroundが削除されました');
+      },
     });
   }
 
@@ -76,7 +80,7 @@ export class PixiSplashScreen {
       text: this.logoText,
       style: {
         fontFamily: 'Arial',
-        fontSize: 50,
+        fontSize: 40,
         fill: '0xee82ee',
         stroke: { color: '0xD02090', width: 5 },
         align: 'center',
@@ -107,7 +111,7 @@ export class PixiSplashScreen {
     const logoTimeline = gsap.timeline();
     logoTimeline
       .to(logoText, {
-        pixi: { alpha: 1, scale: 1, ease: 'back.inOut' },
+        pixi: { alpha: 1, scale: 1 },
         duration: 1,
         delay: 0.2,
       })
@@ -116,15 +120,19 @@ export class PixiSplashScreen {
         {
           duration: 1,
           outerStrength: 1, // 光の強さを変化
-          ease: 'power2.easeIn',
-          delay: 1.5,
+          // ease: 'power1.easeIn',
+          delay: 1,
         },
         0,
       )
       .to(logoText, {
         pixi: { alpha: 0 },
-        duration: 1,
-        delay: 0.5,
+        duration: 0.1,
+        delay: 0.8,
+        onComplete: () => {
+          logoText.destroy();
+          console.log('Spriteが削除されました');
+        },
       });
   }
 
@@ -164,17 +172,22 @@ export class PixiSplashScreen {
         {
           duration: 1,
           outerStrength: 4, // 光の強さを変化
-          ease: 'power2.easeIn',
-          delay: 1.5,
+          // ease: 'power1.easeIn',
+          delay: 1,
         },
         0,
       )
       .to(rect1, {
-        pixi: { scale: 1.5, duration: 3, ease: 'power2.easeIn' },
+        pixi: { scale: 1.5 },
+        duration: 0.5,
       })
       .to(rect1, {
         pixi: { alpha: 0 },
         duration: 1,
+        onComplete: () => {
+          rect1.destroy();
+          console.log('Spriteが削除されました');
+        },
       });
   }
 
@@ -213,19 +226,24 @@ export class PixiSplashScreen {
       .to(
         glowFilter2,
         {
-          duration: 1.5,
+          duration: 1,
           outerStrength: 4, // 光の強さを変化
-          ease: 'power2.easeIn',
+          //ease: 'easeIn',
           delay: 1,
         },
         0,
       )
       .to(rect2, {
-        pixi: { scale: 1.5, duration: 3, ease: 'power2.easeIn' },
+        pixi: { scale: 1.5 },
+        duration: 0.5,
       })
       .to(rect2, {
         pixi: { alpha: 0 },
         duration: 1,
+        onComplete: () => {
+          rect2.destroy();
+          console.log('Spriteが削除されました');
+        },
       });
   }
 
@@ -264,19 +282,24 @@ export class PixiSplashScreen {
       .to(
         glowFilter3,
         {
-          duration: 0.5,
+          duration: 1,
           outerStrength: 4, // 光の強さを変化
-          ease: 'power2.easeIn',
-          delay: 2,
+          // ease: 'easeIn',
+          delay: 1,
         },
         0,
       )
       .to(rect3, {
-        pixi: { scale: 1.5, duration: 3, ease: 'power2.easeIn' },
+        pixi: { scale: 1.5 },
+        duration: 0.5,
       })
       .to(rect3, {
         pixi: { alpha: 0 },
         duration: 1,
+        onComplete: () => {
+          rect3.destroy();
+          console.log('Spriteが削除されました');
+        },
       });
   }
 
