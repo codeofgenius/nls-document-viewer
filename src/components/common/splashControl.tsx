@@ -7,41 +7,38 @@ import { Index } from '@/components/page';
 
 import type { SplashControllerProps } from '@/types/page';
 
-const DAYS_THRESHOLD_MS = 3 * 24 * 60 * 60 * 1000 * 0;
+const DAYS_THRESHOLD_MS = 3 * 24 * 60 * 60 * 1000;
 const SPLASH_DURATION_MS = 4000;
 
 export function SplashControl({ books }: SplashControllerProps) {
   const [showSplash, setShowSplash] = useState(false);
-  // const [isInitialLoad, setIsInitialLoad] = useState(false);
 
   useEffect(() => {
-    // ローカルストレージから前回の訪問日時を取得
+    // get last visit time from local storage
     const lastVisit = localStorage.getItem('lastVisit');
     const now = new Date().getTime();
+    let splashTimer: NodeJS.Timeout | null = null;
 
-    // 初回アクセス、または3日以上経過しているかを判定
+    // check first visit or 3 days passed
     if (!lastVisit || now - parseInt(lastVisit) > DAYS_THRESHOLD_MS) {
-      // setIsInitialLoad(true);
       setShowSplash(true);
 
-      // スプラッシュ画面を一定時間表示
-      setTimeout(() => {
+      splashTimer = setTimeout(() => {
+        // show splash for certain secs
         setShowSplash(false);
       }, SPLASH_DURATION_MS);
 
-      // 前回の訪問日時を更新
+      // update last visit to local storage
       localStorage.setItem('lastVisit', now.toString());
     } else {
-      // 初回アクセスではない場合、スプラッシュ画面をスキップ
+      // do not show splash screen
       setShowSplash(false);
     }
-    // const timer = setTimeout(() => {
-    //   setShowSplash(true);
-    // }, elapsedTime);
-
-    // return () => {
-    //   clearTimeout(timer);
-    // };
+    return () => {
+      if (splashTimer) {
+        clearTimeout(splashTimer);
+      }
+    };
   }, []);
 
   return (
