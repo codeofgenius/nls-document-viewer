@@ -7,22 +7,21 @@ import { Index } from '@/components/page';
 
 import type { SplashControllerProps } from '@/types/page';
 
+const elapsedTime = 5000;
+
 export function SplashControl({ books }: SplashControllerProps) {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    // 3秒後にスプラッシュ画面を非表示にするタイマー
     const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 3000); // 3000ms = 3秒
+      setShowSplash(true);
+    }, elapsedTime);
 
-    // コンポーネントがアンマウントされる際にタイマーをクリア
     return () => {
       clearTimeout(timer);
     };
-  }, []); // 最初のレンダリング時のみ実行
+  }, []);
 
-  // showSplashの状態に応じて表示するコンポーネントを切り替える
   return (
     <>
       <Index {...{ books }} />
