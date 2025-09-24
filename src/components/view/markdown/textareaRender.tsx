@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Button } from 'flowbite-react';
+import Editor from '@monaco-editor/react';
+import { Button, useThemeMode } from 'flowbite-react';
 
 import { textareaAction } from '@/actions/markdown';
-import { inconsolata } from '@/components/ui/font';
 import { TextAreaModal2 } from '@/components/view/markdown/modal';
 import {
   type ParserType,
@@ -32,12 +32,20 @@ const param: TextareaActionStatusParams = [
   },
 ];
 
+const monacoLanguage: Record<string, string> = {
+  nodejs: 'javascript',
+  javascript: 'javascript',
+  python: 'python',
+};
+
 export function TextareaRender({ children, node }: ParserType) {
   const [value, setValue] = useState(children);
   const [openModal, setOpenModal] = useState(false);
   // 0 => PROC, 1 => OK, 2 => NG
   const [status, setStatus] = useState<TextareaActionStatusKey>(0);
   const [result, setResult] = useState('');
+  const { computedMode } = useThemeMode();
+  const [codeStyle, setCodeStyle] = useState<'light' | 'vs-dark'>('light');
 
   const {
     properties: {
@@ -57,8 +65,12 @@ export function TextareaRender({ children, node }: ParserType) {
     },
   };
 
-  function handleChangeValue(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    setValue(e.target.value);
+  // function handleChangeValue(e: React.ChangeEvent<HTMLTextAreaElement>) {
+  //   setValue(e.target.value);
+  // }
+
+  function handleChangeValue(value: string | undefined) {
+    setValue(value ?? '');
   }
 
   async function handleSubmit() {
@@ -96,13 +108,36 @@ export function TextareaRender({ children, node }: ParserType) {
     setOpenModal(false);
   }
 
+  useEffect(() => {
+    setCodeStyle(computedMode === 'light' ? 'light' : 'vs-dark');
+  }, [computedMode]);
+
   return (
     <>
       <form className="my-4">
-        <textarea
+        {/* <textarea
           className={`${inconsolata.className} block min-h-[300px] w-[100%] resize-none rounded-md border-2 border-gray-600 bg-gray-800 p-3 text-lg tracking-wide text-white dark:border-gray-400 dark:bg-gray-200 dark:text-black`}
           defaultValue={value}
           onChange={handleChangeValue}
+        /> */}
+        <Editor
+          className="h-[300px] border-1 border-gray-400 rounded-md w-[100%] py-3 px-0"
+          defaultLanguage={
+            monacoLanguage[dataProcessLanguage.toLowerCase()] ?? ''
+          }
+          defaultValue={value}
+          height="100%"
+          onChange={handleChangeValue}
+          options={{
+            fontSize: 18,
+            lineNumbers: 'on',
+            scrollBeyondLastLine: false,
+            fontFamily: 'inconsolata MPlus',
+            minimap: { enabled: false },
+            wordWrap: 'on',
+            copyWithSyntaxHighlighting: true,
+          }}
+          theme={codeStyle}
         />
         <div className="my-4">
           <Button
