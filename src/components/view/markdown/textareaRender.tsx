@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Editor } from '@monaco-editor/react';
+import { Editor, useMonaco } from '@monaco-editor/react';
 import { Button, useThemeMode } from 'flowbite-react';
+import { type editor } from 'monaco-editor';
 
 import { textareaAction } from '@/actions/markdown';
 import { TextAreaModal2 } from '@/components/view/markdown/modal';
@@ -45,6 +46,7 @@ export function TextareaRender({ children, node }: ParserType) {
   const [status, setStatus] = useState<TextareaActionStatusKey>(0);
   const [result, setResult] = useState('');
   const { computedMode } = useThemeMode();
+  const monaco = useMonaco();
   const [codeStyle, setCodeStyle] = useState<'light' | 'vs-dark'>('light');
 
   const {
@@ -69,11 +71,14 @@ export function TextareaRender({ children, node }: ParserType) {
   //   setValue(e.target.value);
   // }
 
-  function handleChangeValue(value: string | undefined) {
+  function handleChangeValue(
+    value: string | undefined,
+    _event: editor.IModelContentChangedEvent,
+  ) {
     setValue(value ?? '');
   }
 
-  async function handleSubmit() {
+  const handleSubmit = useCallback(async () => {
     // console.log('start running');
     preActon();
     const response = await textareaAction({
@@ -87,7 +92,14 @@ export function TextareaRender({ children, node }: ParserType) {
     // console.log(response);
     // console.log('end running');
     postAction(response);
-  }
+  }, [
+    dataOk,
+    dataQuestion,
+    dataUrl,
+    dataProcessLanguage,
+    dataDisplayLanguage,
+    value,
+  ]);
 
   function preActon() {
     setStatus(0);
@@ -108,9 +120,25 @@ export function TextareaRender({ children, node }: ParserType) {
     setOpenModal(false);
   }
 
+  const submitDescriptor = useMemo(() => {
+    if (monaco) {
+      return {
+        id: 'xxx',
+        label: 'aaa',
+        keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
+        run: async function () {
+          await handleSubmit();
+        },
+      };
+    }
+  }, [monaco, handleSubmit]);
+
   useEffect(() => {
+    if (monaco && submitDescriptor) {
+      monaco.editor.addEditorAction(submitDescriptor);
+    }
     setCodeStyle(computedMode === 'light' ? 'light' : 'vs-dark');
-  }, [computedMode]);
+  }, [computedMode, monaco, submitDescriptor]);
 
   return (
     <>
@@ -127,7 +155,9 @@ export function TextareaRender({ children, node }: ParserType) {
           }
           defaultValue={value}
           height="100%"
-          onChange={handleChangeValue}
+          onChange={(value, event) => {
+            handleChangeValue(value, event);
+          }}
           options={{
             fontSize: 18,
             lineNumbers: 'on',
@@ -145,7 +175,7 @@ export function TextareaRender({ children, node }: ParserType) {
             onClick={handleSubmit}
             type="button"
           >
-            実行
+            実行 / Ctrl + Enter
           </Button>
         </div>
       </form>
