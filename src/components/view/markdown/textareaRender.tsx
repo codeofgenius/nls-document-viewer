@@ -149,7 +149,7 @@ export function TextareaRender({ children, node }: ParserType) {
           onChange={handleChangeValue}
         /> */}
         <Editor
-          className="h-[300px] border-1 border-gray-400 rounded-md w-[100%] py-3 px-0 bg-[#fffffe] dark:bg-[#1e1e1e]"
+          className="h-[300px] border-2 border-gray-400 dark:border-gray-700 rounded-md w-[100%] py-3 px-0 bg-[#fffffe] dark:bg-[#1e1e1e]"
           defaultLanguage={
             monacoLanguage[dataProcessLanguage.toLowerCase()] ?? ''
           }
