@@ -123,8 +123,8 @@ export function TextareaRender({ children, node }: ParserType) {
   const submitDescriptor = useMemo(() => {
     if (monaco) {
       return {
-        id: 'xxx',
-        label: 'aaa',
+        id: 'SubmitAction',
+        label: 'SubmitAction',
         keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
         run: async function () {
           await handleSubmit();
